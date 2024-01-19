@@ -1,4 +1,4 @@
 browser.action.onClicked.addListener((() =>
   browser.tabs.create({
-    url: 'https://oddsquat.org'
+    url: '/pages/search/search.html'
   })))

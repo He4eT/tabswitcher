@@ -1,0 +1,30 @@
+html, body {
+  font-family: sans;
+  margin: 0;
+  padding: 0;
+}
+
+.popup {
+  --step: 8px;
+
+  --color-bg: #ffffff;
+  --color-text: #333333;
+  --color-accent: #888888;
+}
+
+@media (prefers-color-scheme: dark) {
+  .popup {
+    --color-bg: #1c1c1c;
+    --color-text: #eeeeee;
+    --color-accent: #cccccc;
+  }
+}
+
+/* Controls */
+
+*:focus-visible {
+  outline-color: var(--color-accent);
+  outline-offset: 4px;
+  outline-style: solid;
+  outline-width: 1px;
+}
