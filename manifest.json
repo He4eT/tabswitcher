@@ -2,6 +2,9 @@
   "action": {
     "default_title": "Tabswitcher"
   },
+  "background": {
+    "scripts": ["background.js"]
+  },
   "browser_specific_settings": {
     "gecko": {
       "id": "tabswitcher@oddsquat.org",
