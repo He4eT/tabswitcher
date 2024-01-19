@@ -1,0 +1,26 @@
+{
+  "action": {
+    "default_title": "Tabswitcher"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "tabswitcher@oddsquat.org",
+      "strict_min_version": "110.0"
+    }
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "F2"
+      }
+    }
+  },
+  "description": "Switch to a tab or close unwanted ones using fuzzy search",
+  "homepage_url": "https://github.com/He4eT/tabswitcher",
+  "manifest_version": 3,
+  "name": "Tabswitcher",
+  "permissions": [
+    "tabs"
+  ],
+  "version": "1.0.0"
+}
