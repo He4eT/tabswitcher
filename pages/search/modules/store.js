@@ -7,33 +7,59 @@ export const init = ({
   /* Initial state */
   const state = {
     tabs: [],
+    results: [],
+    query: '',
   }
 
   /* */
 
+  const addLabel = (tabs) => (tab) => ({
+    label: labels.id2label(tab.id, tabs),
+    ...tab,
+  })
+
+  const pickFields = (tab) => [
+    'favIconUrl',
+    'id',
+    'label',
+    'title',
+    'url',
+  ].reduce((acc, x) => (acc[x] = tab[x], acc), {})
+
+  const addDisplayName = (tab) => ({
+    displayName: `
+      <span>${tab.label}</span>
+      <span>${tab.title} / ${tab.url}</span>`,
+    ...tab,
+  })
+
   const shapeTabs = (tabs) => tabs
-    .map((tab) => ({
-      label: labels.id2label(tab.id, tabs),
-      ...tab,
-    }))
-    .map((tab) => [
-      'favIconUrl',
-      'id',
-      'label',
-      'title',
-      'url',
-    ].reduce((acc, x) => (acc[x] = tab[x], acc), {}))
+    .map(addLabel(tabs))
+    .map(pickFields)
+    .map(addDisplayName)
 
   const fetchTabs = () =>
     browserTabs.query({ currentWindow: true, active: false })
       .then(shapeTabs)
       .then((tabs) => tabs.reverse())
-      .then((tabs) => void (state.tabs = tabs))
+      .then((tabs) => {
+        void (state.tabs = tabs)
+        void (state.results = tabs)
+      })
 
   /* */
 
+  const updateResults = () => {
+    state.results = state.query.length === 0
+      ? state.tabs
+      : []
+  }
+  /* */
+
   const updateState = () =>
-    fetchTabs()
+    Promise.resolve()
+      .then(fetchTabs)
+      .then(updateResults)
       .then(() => onStateUpdate(state))
 
   updateState()
@@ -52,6 +78,10 @@ export const init = ({
       closeTab(id) {
         browserTabs.remove(id)
           .then(updateState)
+      },
+      updateQuery(query) {
+        state.query = query
+        updateState()
       },
     },
   }

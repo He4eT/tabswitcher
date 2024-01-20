@@ -1,8 +1,7 @@
 import * as Store from './modules/store.js'
+import * as dom from './modules/dom.js'
 
 const store = Store.init({
   tabs: browser.tabs,
-  onStateUpdate: console.log,
+  onStateUpdate: dom.updateSearchResults,
 })
-
-console.log(store.getCurrentState())
