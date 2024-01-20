@@ -4,15 +4,11 @@ const labels = {
 
 const lettersOrder = 'lkjhyuionm'
 
+/* */
+
 const digits2label = (digits) => [...digits]
   .map((digit) => lettersOrder[digit])
   .join('')
-
-const label2digits = (label) => [...label]
-  .map((letter) => [...lettersOrder].findIndex((x) => x === letter))
-  .join('')
-
-/* */
 
 export const id2label = (id, tabs) => {
   if (!labels[id]) {
@@ -24,6 +20,12 @@ export const id2label = (id, tabs) => {
   const digits = String(labels[id]).padStart(keyLength, 0)
   return digits2label(digits)
 }
+
+/* */
+
+const label2digits = (label) => [...label]
+  .map((letter) => [...lettersOrder].findIndex((x) => x === letter))
+  .join('')
 
 export const label2id = (label) => {
   const paddedDigits = label2digits(label)
