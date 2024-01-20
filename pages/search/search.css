@@ -1,3 +1,63 @@
-body {
-  background-color: red;
+header {
+  display: flex;
+  padding: calc(2 * var(--step));
+  gap: calc(2 * var(--step));
+}
+
+header > input {
+  border: 0;
+  border-bottom: 2px solid var(--gray-light-30);
+  padding: var(--step);
+  flex: 1 1 auto;
+  font: inherit;
+  background: inherit;
+}
+
+header > input#searchbox {
+  flex-grow: 2;
+}
+
+header > input:focus-visible {
+  outline: none;
+  border-bottom: 2px solid var(--color-text);
+}
+
+main {
+  padding: calc(2 * var(--step));
+  display: flex;
+  flex-direction: column;
+}
+
+.tab {
+  appearance: none;
+  text-align: unset;
+
+  background: inherit;
+  font: inherit;
+  border: inherit;
+
+  width: auto;
+
+  display: flex;
+  padding: calc(1 * var(--step));
+  gap: calc(2 * var(--step));
+
+  overflow: hidden;
+}
+
+.tab .label {
+  font-family: monospace;
+  color: var(--gray-dark-05);
+  flex-shrink: 0;
+}
+
+.tab > .title,
+.tab > .url {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tab .url {
+  color: var(--gray-dark-05);
 }

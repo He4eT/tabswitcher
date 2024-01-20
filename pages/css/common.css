@@ -2,29 +2,43 @@ html, body {
   font-family: sans;
   margin: 0;
   padding: 0;
-}
 
-.popup {
   --step: 8px;
 
-  --color-bg: #ffffff;
-  --color-text: #333333;
-  --color-accent: #888888;
+  /* @see https://acorn.firefox.com/latest/styles/color-MZHBVuZc#section-gray-c2 */
+  --gray-light-05: #fbfbfe;
+  --gray-light-10: #f9f9fb;
+  --gray-light-20: #f0f0f4;
+  --gray-light-30: #e0e0e6;
+  --gray-light-40: #cfcfd8;
+  --gray-light-50: #bfbfc9;
+
+  --gray-dark-05: #5b5b66;
+  --gray-dark-10: #52525e;
+  --gray-dark-30: #42414d;
+  --gray-dark-40: #3a3944;
+  --gray-dark-60: #2b2a33;
+  --gray-dark-80: #1c1b22;
+  --gray-dark-90: #15141a;
+}
+
+body {
+  --color-bg: var(--gray-light-10);
+  --color-text: var(--gray-dark-80);
 }
 
 @media (prefers-color-scheme: dark) {
-  .popup {
-    --color-bg: #1c1c1c;
-    --color-text: #eeeeee;
-    --color-accent: #cccccc;
+  body {
+    --color-bg: var(--gray-dark-60);
+    --color-text: var(--gray-light-40);
   }
 }
 
-/* Controls */
+/* Common */
 
-*:focus-visible {
-  outline-color: var(--color-accent);
-  outline-offset: 4px;
-  outline-style: solid;
-  outline-width: 1px;
+body {
+  font-size: calc(2 * var(--step));
+
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
