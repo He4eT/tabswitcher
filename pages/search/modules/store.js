@@ -1,4 +1,5 @@
 import * as labels from './labels.js'
+const fuzzysort = window.fuzzysort
 
 export const init = ({
   tabs: browserTabs,
@@ -42,17 +43,15 @@ export const init = ({
     browserTabs.query({ currentWindow: true, active: false })
       .then(shapeTabs)
       .then((tabs) => tabs.reverse())
-      .then((tabs) => {
-        void (state.tabs = tabs)
-        void (state.results = tabs)
-      })
+      .then((tabs) => void (state.tabs = tabs))
 
   /* */
 
   const updateResults = () => {
-    state.results = state.query.length === 0
-      ? state.tabs
-      : []
+    state.results = fuzzysort.go(state.query, state.tabs, {
+      keys: ['label', 'title', 'url'],
+      all: true,
+    }).map(({obj}) => obj)
   }
   /* */
 
