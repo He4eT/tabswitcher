@@ -1,4 +1,4 @@
-const focusButtonsWithArrows = (e) => {
+const focusButtonsWithArrows = (e, abortCallback) => {
   if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
     e.preventDefault()
 
@@ -16,7 +16,16 @@ const focusButtonsWithArrows = (e) => {
         'ArrowUp': -1,
       }[e.key]) + currentIndex + buttons.length) % buttons.length
 
-    buttons[newIndex].focus()
+    const shouldAbort = [
+      e.key === 'ArrowUp' && currentIndex === 0,
+      e.key === 'ArrowDown' && currentIndex === buttons.length - 1,
+    ].some(Boolean)
+
+    if (shouldAbort) {
+      abortCallback()
+    } else {
+      buttons[newIndex].focus()
+    }
   }
 }
 
@@ -25,7 +34,10 @@ export const attachInputHandlers = (store) => {
   const actionbox = document.getElementById('actionbox')
 
   document.addEventListener('keydown', (e) => {
-    focusButtonsWithArrows(e)
+    focusButtonsWithArrows(e, () => {
+      searchBox.focus()
+    })
+
     if (e.key === 'Escape') {
       searchBox.focus()
     }
