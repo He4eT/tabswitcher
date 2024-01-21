@@ -4,6 +4,7 @@ import * as inputHandlers from './modules/inputHandlers.js'
 
 const store = Store.init({
   tabs: browser.tabs,
+  windows: browser.windows,
   onStateUpdate: dom.updateSearchResults,
   closeCurrentTab: () => window.close(),
 })

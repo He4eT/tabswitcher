@@ -19,7 +19,7 @@ export const actionboxHandlers = (commandQuery, store, flush) => {
     'c': duplicateTab,
     's': discardTab,
     'p': pinOrUnpinTab,
-    // 'e': Pop the tab into it's own window with minimal UI
+    'e': moveTabToPopup,
   }[command] ?? noop(command))(store, label, flush)
 }
 
@@ -75,6 +75,15 @@ function duplicateTab (store, label, flush) {
   if (tab) {
     flush()
     store.actions.createBackgroundTab(tab.url)
+  }
+}
+
+function moveTabToPopup (store, label, flush) {
+  const tab = getTabByLabel(store, label)
+  if (tab) {
+    flush()
+    store.actions.moveTabToPopup(tab.id)
+    store.actions.closeCurrentTab()
   }
 }
 

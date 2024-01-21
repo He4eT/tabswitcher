@@ -3,6 +3,7 @@ const fuzzysort = window.fuzzysort
 
 export const init = ({
   tabs: browserTabs,
+  windows: browserWindows,
   onStateUpdate,
   closeCurrentTab,
 }) => {
@@ -93,6 +94,12 @@ export const init = ({
       discardTab(id) {
         browserTabs.discard(id)
           .then(updateState)
+      },
+      moveTabToPopup(id) {
+        browserWindows.create({
+          tabId: id,
+          type: 'popup',
+        }).then(updateState)
       },
       updateTab(id, options) {
         browserTabs.update(id, options)
