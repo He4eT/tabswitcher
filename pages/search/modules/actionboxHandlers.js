@@ -67,9 +67,6 @@ function duplicateTab (store, label, flush) {
   const tab = getTabByLabel(store, label)
   if (tab) {
     flush()
-    browser.tabs.create({
-      active: false,
-      url: tab.url,
-    }).then(store.actions.updateState)
+    store.actions.createBackgroundTab(tab.url)
   }
 }

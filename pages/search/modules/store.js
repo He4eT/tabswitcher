@@ -74,6 +74,12 @@ export const init = ({
         browserTabs.remove(id)
           .then(updateState)
       },
+      createBackgroundTab(url) {
+        browserTabs.create({
+          active: false,
+          url,
+        }).then(updateState)
+      },
       updateQuery(query) {
         state.query = query
         updateState()
