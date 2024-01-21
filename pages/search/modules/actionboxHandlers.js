@@ -10,19 +10,25 @@ export const actionboxHandlers = (commandQuery, store, flush) => {
 
   ({
     '?': openHelp,
-    'x': closeCurrentTab,
+    'q': closeCurrentTab,
     'r': reloadCurrentTab,
     /* */
     'f': switchToTab,
     'd': closeTab,
     'c': duplicateTab,
+    /* TODO */
+    // 'p': Pin or unpin the tab
+    // 'm': Mute or unmute the tab
+    // 's': Put the tab to sleep
+    // 'e': Pop the tab into it's own window with minimal UI
   }[command] ?? noop(command))(store, label, flush)
 }
 
 /* */
 
 function openHelp () {
-
+  const helpLink = 'https://github.com/He4eT/tabswitcher#Tabswitcher'
+  location.href = helpLink
 }
 
 function closeCurrentTab () {
@@ -44,7 +50,6 @@ function switchToTab (store, label) {
   const tab = getTabByLabel(store, label)
   if (tab) {
     store.actions.goToTab(tab.id)
-    flush()
     closeCurrentTab()
   }
 }
@@ -52,18 +57,18 @@ function switchToTab (store, label) {
 function closeTab (store, label, flush) {
   const tab = getTabByLabel(store, label)
   if (tab) {
-    store.actions.closeTab(tab.id)
     flush()
+    store.actions.closeTab(tab.id)
   }
 }
 
 function duplicateTab (store, label, flush) {
   const tab = getTabByLabel(store, label)
   if (tab) {
+    flush()
     browser.tabs.create({
       active: false,
       url: tab.url,
     }).then(store.actions.updateState)
-    flush()
   }
 }

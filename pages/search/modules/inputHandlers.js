@@ -80,11 +80,9 @@ export const attachInputHandlers = (store) => {
   searchBox.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       let visibleTabs = store.getCurrentState().results
-      if (visibleTabs.length === 1) {
+      if (visibleTabs.length > 0) {
         const tabId = visibleTabs[0].obj.id
         switchToTab(tabId)
-      } else {
-        actionbox.focus()
       }
     }
   })

@@ -8,11 +8,14 @@
   </head>
   <body>
     <header>
-      <input type='search' id='searchbox' placeholder='Filter' autofocus />
+      <input type='search' id='searchbox' placeholder='Enter search terms' autofocus />
       <input type='search' id='actionbox' placeholder='Action (? for help)' />
     </header>
     <main id='searchResults'></main>
-    <script type="text/javascript" src="./vendor/fuzzysort.js"></script>
+
+    <!-- https://github.com/farzher/fuzzysort/blob/4096947da28d0831ee2a8ca67257c0b0c84915d1/fuzzysort.js -->
+    <script src="./vendor/fuzzysort.js"></script>
+    <!-- -->
     <script type='module' src='./search.js'></script>
   </body>
 </html>
