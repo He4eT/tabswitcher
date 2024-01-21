@@ -89,6 +89,14 @@ export const init = ({
           url,
         }).then(updateState)
       },
+      discardTab(id) {
+        browserTabs.discard(id)
+          .then(updateState)
+      },
+      updateTab(id, options) {
+        browserTabs.update(id, options)
+          .then(updateState)
+      },
       updateQuery(query) {
         state.query = query
         updateState()

@@ -15,12 +15,12 @@ export const actionboxHandlers = (commandQuery, store, flush) => {
     /* */
     'f': switchToTab,
     'd': closeTab,
+    /* */
     'c': duplicateTab,
-    /* TODO */
-    // 'p': Pin or unpin the tab
-    // 'm': Mute or unmute the tab
-    // 's': Put the tab to sleep
+    's': discardTab,
     // 'e': Pop the tab into it's own window with minimal UI
+    // 'm': Mute or unmute the tab
+    // 'p': Pin or unpin the tab
   }[command] ?? noop(command))(store, label, flush)
 }
 
@@ -60,6 +60,14 @@ function closeTab (store, label, flush) {
   if (tab) {
     flush()
     store.actions.closeTab(tab.id)
+  }
+}
+
+function discardTab (store, label, flush) {
+  const tab = getTabByLabel(store, label)
+  if (tab) {
+    flush()
+    store.actions.discardTab(tab.id)
   }
 }
 
