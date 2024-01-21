@@ -62,6 +62,7 @@ export const init = ({
       return state
     },
     actions: {
+      updateState,
       goToTab(id) {
         browserTabs.update(id, { active: true })
           .then(updateState)

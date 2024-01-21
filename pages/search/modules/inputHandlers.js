@@ -1,3 +1,5 @@
+import { actionboxHandlers } from './actionboxHandlers.js'
+
 const focusButtonsWithArrows = (e, abortCallback) => {
   if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
     e.preventDefault()
@@ -31,7 +33,10 @@ const focusButtonsWithArrows = (e, abortCallback) => {
 
 export const attachInputHandlers = (store) => {
   const searchBox = document.getElementById('searchbox')
+  searchBox.value = ''
+
   const actionbox = document.getElementById('actionbox')
+  actionbox.value = ''
 
   /* Switch to tab */
   const switchToTab = (tabId) => {
@@ -58,6 +63,14 @@ export const attachInputHandlers = (store) => {
     }
   })
 
+  /* Actionbox */
+  actionbox.addEventListener('input', (e) => {
+    const commandQuery = e.target.value
+    const flush = () => (actionbox.value = '')
+
+    actionboxHandlers(commandQuery, store, flush)
+  })
+
   /* Searchbox*/
 
   searchBox.addEventListener('input', (e) => {
@@ -75,6 +88,4 @@ export const attachInputHandlers = (store) => {
       }
     }
   })
-
-  /* Actionbox */
 }
