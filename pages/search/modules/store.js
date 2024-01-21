@@ -27,17 +27,9 @@ export const init = ({
     'url',
   ].reduce((acc, x) => (acc[x] = tab[x], acc), {})
 
-  const addDisplayName = (tab) => ({
-    displayName: `
-      <span>${tab.label}</span>
-      <span>${tab.title} / ${tab.url}</span>`,
-    ...tab,
-  })
-
   const shapeTabs = (tabs) => tabs
     .map(addLabel(tabs))
     .map(pickFields)
-    .map(addDisplayName)
 
   const fetchTabs = () =>
     browserTabs.query({ currentWindow: true, active: false })
@@ -51,7 +43,7 @@ export const init = ({
     state.results = fuzzysort.go(state.query, state.tabs, {
       keys: ['label', 'title', 'url'],
       all: true,
-    }).map(({obj}) => obj)
+    })
   }
   /* */
 
