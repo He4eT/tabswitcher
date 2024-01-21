@@ -21,6 +21,7 @@ export const init = ({
   })
 
   const pickFields = (tab) => [
+    'discarded',
     'favIconUrl',
     'id',
     'label',

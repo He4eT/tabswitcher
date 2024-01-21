@@ -20,6 +20,10 @@ html, body {
   --gray-dark-60: #2b2a33;
   --gray-dark-80: #1c1b22;
   --gray-dark-90: #15141a;
+
+  --green-20: #b3ffe3;
+  --green-40: #54ffbd;
+  --green-60: #2ac3a2;
 }
 
 body {

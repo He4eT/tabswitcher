@@ -65,6 +65,21 @@ main {
   height: calc(2 * var(--step));
 }
 
+.tab > .indicator {
+  flex-shrink: 0;
+  border-radius: 50%;
+  width: calc(1 * var(--step));
+  height: calc(1 * var(--step));
+}
+
+.tab > .indicator.active {
+  background-color: var(--green-60);
+}
+
+.tab > .indicator.discarded {
+  background-color: var(--gray-light-50);
+}
+
 .tab > .label {
   font-family: monospace;
   color: var(--gray-dark-10);
