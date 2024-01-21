@@ -45,7 +45,9 @@ export const attachInputHandlers = (store) => {
     })
 
     if (e.key === 'Escape') {
-      searchBox.focus()
+      document.activeElement === searchBox
+        ? store.actions.closeCurrentTab()
+        : searchBox.focus()
     }
   })
 
