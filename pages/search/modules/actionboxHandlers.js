@@ -31,8 +31,8 @@ function openHelp () {
   location.href = helpLink
 }
 
-function closeCurrentTab () {
-  window.close()
+function closeCurrentTab (store) {
+  store.actions.closeCurrentTab()
 }
 
 function reloadCurrentTab () {
@@ -46,11 +46,12 @@ const getTabByLabel = (store, label) => {
   return tabs.find(tab => tab.label === label)
 }
 
-function switchToTab (store, label) {
+function switchToTab (store, label, flush) {
   const tab = getTabByLabel(store, label)
   if (tab) {
+    flush()
     store.actions.goToTab(tab.id)
-    closeCurrentTab()
+    store.actions.closeCurrentTab()
   }
 }
 

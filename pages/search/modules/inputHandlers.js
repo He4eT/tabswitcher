@@ -38,12 +38,6 @@ export const attachInputHandlers = (store) => {
   const actionbox = document.getElementById('actionbox')
   actionbox.value = ''
 
-  /* Switch to tab */
-  const switchToTab = (tabId) => {
-    store.actions.goToTab(parseInt(tabId))
-    window.close()
-  }
-
   /* Arrow keys */
   document.addEventListener('keydown', (e) => {
     focusButtonsWithArrows(e, () => {
@@ -58,8 +52,8 @@ export const attachInputHandlers = (store) => {
   /* Buttons */
   document.addEventListener('click', (event) => {
     if (event.target.classList.contains('tab')) {
-      const tabId = event.target.dataset.id
-      switchToTab(tabId)
+      const tabId = parseInt(event.target.dataset.id)
+      store.actions.goToTab(tabId)
     }
   })
 
@@ -82,7 +76,7 @@ export const attachInputHandlers = (store) => {
       let visibleTabs = store.getCurrentState().results
       if (visibleTabs.length > 0) {
         const tabId = visibleTabs[0].obj.id
-        switchToTab(tabId)
+        store.actions.goToTab(tabId)
       }
     }
   })

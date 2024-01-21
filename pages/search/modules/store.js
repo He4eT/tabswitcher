@@ -4,6 +4,7 @@ const fuzzysort = window.fuzzysort
 export const init = ({
   tabs: browserTabs,
   onStateUpdate,
+  closeCurrentTab,
 }) => {
   /* Initial state */
   const state = {
@@ -66,7 +67,9 @@ export const init = ({
       goToTab(id) {
         browserTabs.update(id, { active: true })
           .then(updateState)
+          .then(closeCurrentTab)
       },
+      closeCurrentTab,
       closeTab(id) {
         browserTabs.remove(id)
           .then(updateState)
