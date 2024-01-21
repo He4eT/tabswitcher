@@ -33,6 +33,13 @@ export const attachInputHandlers = (store) => {
   const searchBox = document.getElementById('searchbox')
   const actionbox = document.getElementById('actionbox')
 
+  /* Switch to tab */
+  const switchToTab = (tabId) => {
+    store.actions.goToTab(parseInt(tabId))
+    window.close()
+  }
+
+  /* Arrow keys */
   document.addEventListener('keydown', (e) => {
     focusButtonsWithArrows(e, () => {
       searchBox.focus()
@@ -43,8 +50,31 @@ export const attachInputHandlers = (store) => {
     }
   })
 
+  /* Buttons */
+  document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('tab')) {
+      const tabId = event.target.dataset.id
+      switchToTab(tabId)
+    }
+  })
+
+  /* Searchbox*/
 
   searchBox.addEventListener('input', (e) => {
     store.actions.updateQuery(e.target.value)
   })
+
+  searchBox.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      let visibleTabs = store.getCurrentState().results
+      if (visibleTabs.length === 1) {
+        const tabId = visibleTabs[0].obj.id
+        switchToTab(tabId)
+      } else {
+        actionbox.focus()
+      }
+    }
+  })
+
+  /* Actionbox */
 }
