@@ -10,11 +10,12 @@ header {
 
 header > input {
   border: 0;
-  border-bottom: 2px solid var(--gray-light-30);
+  border-bottom: 2px solid currentColor;
   padding: var(--step);
   flex: 1 1 auto;
   font: inherit;
   background: inherit;
+  color: inherit;
 }
 
 header > input#searchbox {
@@ -38,6 +39,7 @@ main {
   align-items: center;
 
   background: inherit;
+  color: inherit;
   font: inherit;
   border: inherit;
 
@@ -57,7 +59,7 @@ main {
 
 .tab:focus-visible {
   outline: none;
-  background-color: var(--gray-light-30);
+  background-color: var(--color-bg-selection);
 }
 
 .tab > .favicon {
@@ -73,21 +75,21 @@ main {
 }
 
 .tab > .indicator.active {
-  background-color: var(--green-60);
+  background-color: var(--color-indicator-active);
 }
 
 .tab > .indicator.discarded {
-  background-color: var(--gray-light-50);
+  background-color: var(--color-indicator-inactive);
 }
 
 .tab > .label {
   font-family: monospace;
-  color: var(--gray-dark-10);
+  color: var(--color-text-alt);
   flex-shrink: 0;
 }
 
 .tab > .url {
-  color: var(--gray-dark-10);
+  color: var(--color-text-alt);
 }
 
 .tab > .title,

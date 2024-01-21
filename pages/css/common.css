@@ -28,13 +28,21 @@ html, body {
 
 body {
   --color-bg: var(--gray-light-10);
+  --color-bg-selection: var(--gray-light-30);
   --color-text: var(--gray-dark-80);
+  --color-text-alt: var(--gray-dark-10);
+  --color-indicator-active: var(--green-60);
+  --color-indicator-inactive: var(--gray-light-50);
 }
 
 @media (prefers-color-scheme: dark) {
   body {
     --color-bg: var(--gray-dark-60);
-    --color-text: var(--gray-light-40);
+    --color-bg-selection: var(--gray-dark-30);
+    --color-text: var(--gray-light-20);
+    --color-text-alt: var(--gray-light-50);
+    --color-indicator-active: var(--green-40);
+    --color-indicator-inactive: var(--gray-light-50);
   }
 }
 
