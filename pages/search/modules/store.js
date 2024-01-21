@@ -14,8 +14,8 @@ export const init = ({
 
   /* */
 
-  const addLabel = (tabs) => (tab) => ({
-    label: labels.id2label(tab.id, tabs),
+  const addLabel = (tab, i, tabs) => ({
+    label: labels.fromNumber(i, tabs.length),
     ...tab,
   })
 
@@ -28,13 +28,13 @@ export const init = ({
   ].reduce((acc, x) => (acc[x] = tab[x], acc), {})
 
   const shapeTabs = (tabs) => tabs
-    .map(addLabel(tabs))
+    .map(addLabel)
     .map(pickFields)
+    .reverse()
 
   const fetchTabs = () =>
     browserTabs.query({ currentWindow: true, active: false })
       .then(shapeTabs)
-      .then((tabs) => tabs.reverse())
       .then((tabs) => void (state.tabs = tabs))
 
   /* */
