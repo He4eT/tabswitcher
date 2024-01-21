@@ -25,6 +25,7 @@ export const init = ({
     'favIconUrl',
     'id',
     'label',
+    'pinned',
     'title',
     'url',
   ].reduce((acc, x) => (acc[x] = tab[x], acc), {})
