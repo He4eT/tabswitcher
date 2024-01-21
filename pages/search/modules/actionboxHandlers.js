@@ -14,10 +14,14 @@ export const actionboxHandlers = (commandQuery, store, flush) => {
     'r': reloadCurrentTab,
     /* */
     'f': switchToTab,
+    // 'F': switchToTopTab,
     'd': closeTab,
+    // 'D': closeTopTab,
     /* */
     'c': duplicateTab,
+    // 'C': duplicateTopTab,
     's': discardTab,
+    // 'S': discardTopActiveTab,
     'p': pinOrUnpinTab,
     'e': moveTabToPopup,
   }[command] ?? noop(command))(store, label, flush)
