@@ -49,8 +49,7 @@ body {
 /* Common */
 
 body {
-  font-size: calc(2 * var(--step));
-
   background-color: var(--color-bg);
   color: var(--color-text);
+  font-size: calc(2 * var(--step));
 }

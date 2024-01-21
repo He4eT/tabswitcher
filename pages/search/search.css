@@ -1,65 +1,84 @@
-header {
-  display: flex;
-  padding: calc(2 * var(--step));
-  gap: calc(2 * var(--step));
+/* */
 
+header {
   position: sticky;
   top: 0;
+
+  display: flex;
+  gap: calc(2 * var(--step));
+  padding: calc(2 * var(--step));
+
   background: inherit;
 }
 
 header > input {
+  flex: 1 1 auto;
+
   border: 0;
   border-bottom: 2px solid currentColor;
+
   padding: var(--step);
-  flex: 1 1 auto;
-  font: inherit;
+
   background: inherit;
   color: inherit;
-}
-
-header > input#searchbox {
-  flex-grow: 2;
+  font: inherit;
 }
 
 header > input:focus-visible {
-  outline: none;
   border-bottom: 2px solid var(--color-text);
+  outline: none;
 }
+
+header > #searchbox {
+  flex-grow: 2;
+}
+
+/* */
 
 main {
-  padding: calc(2 * var(--step));
   display: flex;
   flex-direction: column;
+
+  padding: calc(2 * var(--step));
 }
 
-.tab {
-  appearance: none;
-  text-align: unset;
-  align-items: center;
+/* */
 
-  background: inherit;
-  color: inherit;
-  font: inherit;
-  border: inherit;
+.tab {
+  display: flex;
+  gap: calc(2 * var(--step));
+  padding: calc(1 * var(--step));
 
   width: auto;
 
-  display: flex;
-  padding: calc(1 * var(--step));
-  gap: calc(2 * var(--step));
-
+  align-items: center;
+  appearance: none;
+  background: inherit;
+  border: inherit;
+  color: inherit;
+  font: inherit;
   overflow: hidden;
+  text-align: unset;
   user-select: initial;
 }
 
-.tab > * {
-  pointer-events: none;
+.tab:focus-visible {
+  background-color: var(--color-bg-selection);
+  outline: none;
 }
 
-.tab:focus-visible {
-  outline: none;
-  background-color: var(--color-bg-selection);
+/* */
+
+.tab b {
+  font-weight: normal;
+  text-decoration: underline;
+  text-shadow: 0px 0px 1px currentColor;
+}
+
+/* */
+
+.tab > * {
+  pointer-events: none;
 }
 
 .tab > .favicon {
@@ -67,29 +86,11 @@ main {
   height: calc(2 * var(--step));
 }
 
-.tab > .indicator {
-  flex-shrink: 0;
-  border-radius: 50%;
-  width: calc(1 * var(--step));
-  height: calc(1 * var(--step));
-}
-
-.tab > .indicator.active {
-  background-color: var(--color-indicator-active);
-}
-
-.tab > .indicator.discarded {
-  background-color: var(--color-indicator-inactive);
-}
-
 .tab > .label {
-  font-family: monospace;
-  color: var(--color-text-alt);
   flex-shrink: 0;
-}
 
-.tab > .url {
   color: var(--color-text-alt);
+  font-family: monospace;
 }
 
 .tab > .title,
@@ -99,8 +100,25 @@ main {
   white-space: nowrap;
 }
 
-.tab b {
-  font-weight: normal;
-  text-shadow: 0px 0px 1px currentColor;
-  text-decoration: underline;
+.tab > .url {
+  color: var(--color-text-alt);
+}
+
+/* */
+
+.tab > .indicator {
+  flex-shrink: 0;
+
+  width: calc(1 * var(--step));
+  height: calc(1 * var(--step));
+
+  border-radius: 50%;
+}
+
+.tab > .indicator.active {
+  background-color: var(--color-indicator-active);
+}
+
+.tab > .indicator.discarded {
+  background-color: var(--color-indicator-inactive);
 }
