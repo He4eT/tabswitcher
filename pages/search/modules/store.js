@@ -58,6 +58,14 @@ export const init = ({
 
   /* */
 
+  browserTabs.onAttached.addListener(updateState)
+  browserTabs.onCreated.addListener(updateState)
+  browserTabs.onDetached.addListener(updateState)
+  browserTabs.onMoved.addListener(updateState)
+  browserTabs.onRemoved.addListener(updateState)
+  browserTabs.onReplaced.addListener(updateState)
+  browserTabs.onUpdated.addListener(updateState)
+
   return {
     getCurrentState() {
       return state
