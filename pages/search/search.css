@@ -48,6 +48,11 @@ main {
   gap: calc(2 * var(--step));
 
   overflow: hidden;
+  user-select: initial;
+}
+
+.tab > * {
+  pointer-events: none;
 }
 
 .tab:focus-visible {
