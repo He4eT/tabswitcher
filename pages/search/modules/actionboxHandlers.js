@@ -11,19 +11,18 @@ export const actionboxHandlers = (commandQuery, store, flush) => {
   ({
     '?': openHelp,
     'q': closeCurrentTab,
-    'r': reloadCurrentTab,
     /* */
-    'f': switchToTab,
-    // 'F': switchToTopTab,
+    'c': cloneTab,
     'd': closeTab,
-    // 'D': closeTopTab,
-    /* */
-    'c': duplicateTab,
-    // 'C': duplicateTopTab,
-    's': discardTab,
-    // 'S': discardTopActiveTab,
-    'p': pinOrUnpinTab,
     'e': moveTabToPopup,
+    'f': switchToTab,
+    'p': pinOrUnpinTab,
+    's': discardTab,
+    /* */
+    'C': cloneTopTab,
+    'D': closeTopTab,
+    'F': switchToTopTab,
+    'S': discardVisibleTabs,
   }[command] ?? noop(command))(store, label, flush)
 }
 
@@ -38,10 +37,6 @@ function closeCurrentTab (store) {
   store.actions.closeCurrentTab()
 }
 
-function reloadCurrentTab () {
-  location.reload()
-}
-
 /* */
 
 const getTabByLabel = (store, label) => {
@@ -49,12 +44,25 @@ const getTabByLabel = (store, label) => {
   return tabs.find(tab => tab.label === label)
 }
 
-function switchToTab (store, label, flush) {
+const getVisibleTabs = (store) => {
+  const tabs = store.getCurrentState().results.map(({obj}) => obj)
+  return tabs ?? []
+}
+
+const getTopTab = (store) => {
+  const tabs = getVisibleTabs(store)
+  return tabs.length > 0
+    ? tabs[0]
+    : undefined
+}
+
+/* */
+
+function cloneTab (store, label, flush) {
   const tab = getTabByLabel(store, label)
   if (tab) {
     flush()
-    store.actions.goToTab(tab.id)
-    store.actions.closeCurrentTab()
+    store.actions.createBackgroundTab(tab.url)
   }
 }
 
@@ -74,14 +82,6 @@ function discardTab (store, label, flush) {
   }
 }
 
-function duplicateTab (store, label, flush) {
-  const tab = getTabByLabel(store, label)
-  if (tab) {
-    flush()
-    store.actions.createBackgroundTab(tab.url)
-  }
-}
-
 function moveTabToPopup (store, label, flush) {
   const tab = getTabByLabel(store, label)
   if (tab) {
@@ -97,4 +97,35 @@ function pinOrUnpinTab (store, label, flush) {
     flush()
     store.actions.updateTab(tab.id, {pinned: !tab.pinned})
   }
+}
+
+function switchToTab (store, label, flush) {
+  const tab = getTabByLabel(store, label)
+  if (tab) {
+    flush()
+    store.actions.goToTab(tab.id)
+    store.actions.closeCurrentTab()
+  }
+}
+
+/* */
+
+function cloneTopTab (store, _, flush) {
+  const tab = getTopTab(store)
+  cloneTab(store, tab.label, flush)
+}
+
+function closeTopTab (store, _, flush) {
+  const tab = getTopTab(store)
+  closeTab(store, tab.label, flush)
+}
+
+function switchToTopTab (store, _, flush) {
+  const tab = getTopTab(store)
+  switchToTab(store, tab.label, flush)
+}
+
+function discardVisibleTabs (store, _, flush) {
+  const tabs = getVisibleTabs(store)
+  tabs.forEach((tab) => discardTab(store, tab.label, flush))
 }
