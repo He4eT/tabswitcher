@@ -6,7 +6,10 @@ const store = Store.init({
   tabs: browser.tabs,
   windows: browser.windows,
   onStateUpdate: dom.updateSearchResults,
-  closeCurrentTab: () => window.close(),
+  closeCurrentTab: () => {
+    history.replaceState({}, '', '')
+    browser.runtime.sendMessage({action: 'closeSender'})
+  },
 })
 
 void inputHandlers.attachInputHandlers(store)

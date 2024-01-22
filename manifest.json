@@ -23,7 +23,8 @@
   "manifest_version": 3,
   "name": "Tabswitcher",
   "permissions": [
-    "tabs"
+    "tabs",
+    "sessions"
   ],
   "version": "1.0.0"
 }
