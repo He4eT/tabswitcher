@@ -10,3 +10,4 @@ const store = Store.init({
 })
 
 void inputHandlers.attachInputHandlers(store)
+void dom.enableFaviconFallback()

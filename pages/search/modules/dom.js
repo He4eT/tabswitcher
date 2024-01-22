@@ -26,3 +26,11 @@ export const updateSearchResults = (state) => {
   const container = document.getElementById('searchResults')
   container.innerHTML = state.results.map(tabView).join('')
 }
+
+export const enableFaviconFallback = () => {
+  window.addEventListener('error', (e) => {
+    if (e.target.tagName === 'IMG') {
+      e.target.src = defaultFavicon
+    }
+  }, true)
+}
