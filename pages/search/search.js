@@ -8,7 +8,6 @@ const store = Store.init({
   windows: browser.windows,
   onStateUpdate: dom.updateSearchResults,
   closeCurrentTab: () => {
-    history.replaceState({}, '', '')
     browser.runtime.sendMessage({action: 'closeSender'})
   },
 })
