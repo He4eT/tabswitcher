@@ -21,15 +21,15 @@ required, in the actionbox. For example: `fjk`, `dlum` or `S`.
 
 - 'f': Navigate to the labeled tab.
 - 'F': Jump to the first tab in search results.
-- 'd': close (*delete*) the labeled tab.
+- 'd': close (**delete**) the labeled tab.
 - 'D': Close the first search results tab.
-- 'c': Copy (or *clone*) the labeled tab.
+- 'c': Copy (or **clone**) the labeled tab.
 - 'C': Duplicate the first search results tab.
-- 's': *Suspend* the labeled tab.
+- 's': **Suspend** the labeled tab.
 - 'S': Suspend all search results tabs.
-- 'p': *Pin* or unpin the labeled tab.
-- 'e': Move (*extract*) the tab to a popup window.
-- 'q': *Quit* the search page.
+- 'p': **Pin** or unpin the labeled tab.
+- 'e': Move (**extract**) the tab to a popup window.
+- 'q': **Quit** the search page.
 - '?': Navigate to this page.
 
 ## Keyboard Shortcut Conflict
