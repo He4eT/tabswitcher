@@ -18,7 +18,7 @@
       }
     }
   },
-  "description": "Switch to a tab or close unwanted ones using fuzzy search",
+  "description": "The musthave extension for a mouse-free Firefox experience",
   "homepage_url": "https://github.com/He4eT/tabswitcher",
   "manifest_version": 3,
   "name": "Tabswitcher",
