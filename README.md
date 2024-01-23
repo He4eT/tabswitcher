@@ -6,13 +6,14 @@ Switch between tabs and manage them with a fuzzy search and basic command toolse
 ## How to Use It
 
 1. Open the search page using the extension icon or by pressing `F2`.
+
   You can customize the keyboard shortcut by accessing the `Manage Extension Shortcuts` in Firefox settings.
 
 1. Filter the list of open tabs with the searchbox.
 
-1. Switch to the top tab in search results with the `Enter` key, choose any other tab with arrow keys or press the `Tab` key to activate the actionbox.
+1. Switch to the top tab in search results with the `Enter` key, choose any other tab with `Arrow Keys` or press the `Tab` key to activate the actionbox.
 
-1. Press the Esc key to activate the search field or close the page if the search field is focused.
+1. Press the `Esc` key to activate the search field or close the page if the search field is focused.
 
 ## Availible Commands
 
