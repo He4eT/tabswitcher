@@ -1,8 +1,11 @@
 # Tabswiper
 
 The musthave extension for a mouse-free Firefox experience.
+<br>Switch between tabs and manage them with a fuzzy search and basic command toolset.
 
-Switch between tabs and manage them with a fuzzy search and basic command toolset.
+Availible on [addons.mozilla.org](https://addons.mozilla.org/addon/tabswiper/).
+
+![Search Window](/screenshots/Screenshot_1.png?raw=true)
 
 ## How to Use It
 
