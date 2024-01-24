@@ -1,4 +1,4 @@
-# Tabswiper
+# Tabswitcher
 
 The must-have extension for a mouse-free Firefox experience.
 <br>Switch between tabs and manage them with a fuzzy search and basic command toolset.
