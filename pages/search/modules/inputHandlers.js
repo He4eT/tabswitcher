@@ -2,7 +2,11 @@ import { actionboxHandlers } from './actionboxHandlers.js'
 
 const focusButtonsWithArrows = (e, abortCallback) => {
   if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
-    e.preventDefault()
+    if (document.activeElement.dataset.arrowNavigation === 'ignore') {
+      return
+    } else {
+      e.preventDefault()
+    }
 
     const buttons = document.querySelectorAll('#searchResults > button')
     if (buttons.length === 0) { return }

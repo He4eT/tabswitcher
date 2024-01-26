@@ -8,8 +8,35 @@
   </head>
   <body>
     <header>
-      <input type='search' id='searchbox' placeholder='Enter search terms' autofocus />
-      <input type='search' id='actionbox' placeholder='Action (? for help)' />
+      <input
+        type='search'
+        id='searchbox'
+        placeholder='Enter search terms'
+        autofocus
+      />
+      <input
+        type='input'
+        id='actionbox'
+        list='actions'
+        data-arrow-navigation='ignore'
+        placeholder='Action (? for help)'
+      />
+
+      <datalist id='actions'>
+        <!-- @see actionboxHandlers.js -->
+        <option value='d'>d: Close (delete) tab</option>
+        <option value='D'>D: Close top tab</option>
+        <option value='c'>c: Duplicate (copy) tab</option>
+        <option value='C'>C: Duplicate top tab</option>
+        <option value='s'>s: Discard tab (put to sleep)</option>
+        <option value='S'>S: Discard all visible tabs</option>
+        <option value='e'>e: Move (extract) tab to popup window</option>
+        <option value='p'>p: Pin or unpin tab</option>
+        <option value='f'>f: Switch to tab</option>
+        <option value='F'>F: Switch to top tab</option>
+        <option value='q'>q: Close current tab</option>
+        <option value='?'>?: Open help page</option>
+      </datalist>
     </header>
     <main id='searchResults'></main>
 
