@@ -5,26 +5,58 @@ const defaultFavicon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCA
 
 const tabView = (result) => {
   const tab = result.obj
-  const [label, title, url] =
-    result.map((field) => fuzzysort.highlight(field))
+  const [label, title, url] = result.map((field) =>
+    fuzzysort.highlight(field))
 
-  const tooltip = (tab.discarded ? `[discarded] ` : '')
-    + `${tab.title}\n${tab.url}`
+  /* Parts */
 
-  return `
-    <button class='tab' data-id='${tab.id}' title='${tooltip}'>
-      <span class='label'>${label ?? tab.label}</span>
-      <img class='favicon' src='${tab.favIconUrl ?? defaultFavicon}'/>
-      <div class='indicator ${tab.discarded ? 'discarded' : 'active'}'></div>
-      <span class='title'>${title ?? tab.title}</span>
-      <span class='url'>${url ?? tab.url}</span>
-    </button>
-  `
+  const labelSpan = document.createElement('span')
+  labelSpan.classList.add('label')
+  labelSpan.textContent = label ?? tab.label
+
+  const faviconImg = document.createElement('img')
+  faviconImg.classList.add('favicon')
+  faviconImg.src = tab.favIconUrl ?? defaultFavicon
+
+  const indicatorDiv = document.createElement('div')
+  indicatorDiv.classList.add('indicator',
+    tab.discarded ? 'discarded' : 'active')
+
+  const titleSpan = document.createElement('span')
+  titleSpan.classList.add('title')
+  titleSpan.textContent = title ?? tab.title
+
+  const urlSpan = document.createElement('span')
+  urlSpan.classList.add('url')
+  urlSpan.textContent = url ?? tab.url
+
+  const parts = [
+    labelSpan,
+    faviconImg,
+    indicatorDiv,
+    titleSpan,
+    urlSpan,
+  ]
+
+  /* Button */
+
+  const tabButton = document.createElement('button')
+  tabButton.classList.add('tab')
+  tabButton.dataset.id = tab.id
+  tabButton.title =
+    (tab.discarded ? '[discarded] ' : '') + `${tab.title}\n${tab.url}`
+
+  parts.forEach((part) => tabButton.appendChild(part))
+
+  return tabButton
 }
 
 export const updateSearchResults = (state) => {
   const container = document.getElementById('searchResults')
-  container.innerHTML = state.results.map(tabView).join('')
+  container.innerHTML = ''
+
+  state.results.forEach((result) =>
+    container.appendChild(tabView(result)))
 }
 
 export const enableFaviconFallback = () => {
